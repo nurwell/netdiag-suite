@@ -25,6 +25,7 @@ logs/
 netdiag_history.db
 *.log
 sample_logs/
+src/net_diag_tool/config/services.json
 
 # IDE
 .vscode/

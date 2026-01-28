@@ -40,17 +40,33 @@ class ServiceHealthChecker:
 
     def load_service_config(self) -> Dict[str, Any]:
         """Loads and validates service configuration."""
-        if not self.config_path.exists():
-            cwd_path = Path("src/net_diag_tool/config/services.json")
-            if cwd_path.exists():
-                self.config_path = cwd_path
-            else:
-                return {"services": []}
-        try:
-            with open(self.config_path, 'r') as f:
-                return json.load(f)
-        except Exception:
-            return {"services": []}
+        # 1. Check for active user config
+        if self.config_path.exists():
+             try:
+                with open(self.config_path, 'r') as f:
+                    return json.load(f)
+             except Exception:
+                pass
+        
+        # 2. Fallback to template (bundled with repo)
+        template_path = self.config_path.parent / "services_template.json"
+        if template_path.exists():
+            # Auto-create the user config from template so they can edit it
+            try:
+                with open(template_path, 'r') as f:
+                    data = json.load(f)
+                # Write to user config path provided checks
+                # (Only do this deep copy if we are in the default location to avoid polluting custom paths)
+                if self.config_path.name == "services.json": 
+                    try:
+                        with open(self.config_path, 'w') as f:
+                            json.dump(data, f, indent=4)
+                    except: pass
+                return data
+            except:
+                pass
+
+        return {"services": []}
 
     async def check_http_service(self, client: httpx.AsyncClient, url: str, timeout: int = 10, expected_status: int = 200) -> Dict[str, Any]:
         """Async HTTP check."""
