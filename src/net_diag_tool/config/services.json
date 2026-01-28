@@ -1,0 +1,47 @@
+{
+    "services": [
+        {
+            "name": "Google",
+            "url": "https://www.google.com",
+            "type": "http",
+            "check_interval": 30,
+            "timeout": 5,
+            "expected_status": 200,
+            "alert_on_failure": true
+        },
+        {
+            "name": "GitHub API",
+            "url": "https://api.github.com",
+            "type": "api",
+            "method": "GET",
+            "expected_response": null,
+            "check_interval": 60,
+            "timeout": 10
+        },
+        {
+            "name": "Local DNS",
+            "host": "google.com",
+            "type": "dns",
+            "check_interval": 60
+        },
+        {
+            "name": "Local SSH",
+            "host": "localhost",
+            "port": 22,
+            "type": "tcp",
+            "check_interval": 60,
+            "timeout": 2
+        },
+        {
+            "name": "Google",
+            "type": "http",
+            "url": "https://google.com",
+            "expected_status": 200,
+            "check_interval": 10
+        }
+    ],
+    "alerting": {
+        "email_enabled": false,
+        "slack_webhook": ""
+    }
+}

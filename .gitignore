@@ -1,0 +1,36 @@
+# Python internals
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment & Secrets
+.env
+.env.local
+
+# Virtual Env
+venv/
+env/
+.venv/
+
+# Build artifacts
+dist/
+build/
+*.spec
+*.egg-info/
+
+# Runtime data (Do not commit history or reports)
+reports/
+logs/
+netdiag_history.db
+*.log
+sample_logs/
+
+# IDE
+.vscode/
+.idea/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/

@@ -1,0 +1,30 @@
+{
+    "thresholds": {
+        "cpu_percent_critical": 90,
+        "cpu_percent_warning": 80,
+        "memory_percent_critical": 90,
+        "memory_percent_warning": 85,
+        "disk_percent_critical": 90,
+        "disk_percent_warning": 85
+    },
+    "alerting": {
+        "enabled": false,
+        "email_enabled": false,
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "sender_email": "alerts@example.com",
+        "receiver_email": "admin@example.com",
+        "smtp_user": "user",
+        "smtp_password": "password"
+    },
+    "critical_services": [
+        "nginx",
+        "apache2",
+        "docker",
+        "postgresql",
+        "mysql",
+        "ssh",
+        "CheckBook",
+        "spooler"
+    ]
+}
